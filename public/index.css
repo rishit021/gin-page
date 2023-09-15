@@ -1,0 +1,87 @@
+.form{
+    display: flex;
+    padding: 0px 25%;
+    background-color: rgb(57, 114, 72);
+    border-radius: 35px;
+    /* color : rgb(205, 255, 68); */
+    color: #ddfe6e;
+    align-items: center;
+    justify-content: center;
+}
+
+.form > form > h1{
+    
+    font-family: 'Ysabeau Office', sans-serif;
+    text-align: center;
+    color: #ffe658;
+    font-size: 50px;
+}
+
+.input{
+    font-family: 'Urbanist', sans-serif;
+    display: flex;
+    height: max-content;
+    width: 500px;
+    margin: 12px;
+    flex-direction: column;
+}
+
+.input label{
+    padding: 3px;
+}
+
+.input input {
+    border-radius: 35px;
+    border:  transparent 0px;
+}
+
+.switchbtn{
+    padding: 0px 15px;
+    border-radius: 25px;
+    border: 0px;
+    margin: 10px 20px;
+    background-color: rgb(174, 112, 254);
+    cursor: pointer;
+    display: block;
+}
+
+.formstyle{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    padding: 0px 15px;
+    margin: 20px 0px;
+}
+
+.display{
+    font-size: larger;
+    padding: 25PX 72PX;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.display > div {
+    text-align: left;
+
+}
+
+.style{
+    background-color: rgba(255, 255, 255, 0.459);
+    padding: 15px;
+    opacity: 0.3;
+    font-size: 20px;
+    cursor: pointer;
+    color : rgb(205, 255, 68);
+
+}
+
+.setfont{
+    font-family: 'Ysabeau Office', sans-serif;
+}
+.setfont > h2 {
+    color : rgb(205, 255, 68);
+    padding: 0px 50px;
+    text-align: center;
+}
