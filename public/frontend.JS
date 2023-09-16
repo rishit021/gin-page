@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   // login and register pages elements
   let login = document.getElementById("login"),
-  form = document.getElementById("form"),
-  loginform = document.getElementById("loginform"),
-  mainform = document.getElementById("mainform"),
-  register = document.getElementById("register")
+    form = document.getElementById("form"),
+    loginform = document.getElementById("loginform"),
+    mainform = document.getElementById("mainform"),
+    register = document.getElementById("register")
 
   let name, mail, number, username, password, repassword, hide;
 
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   submit.addEventListener("click", (e) => {
     e.preventDefault();
-    
+
     user = {
       name: name.value,
       mail: mail.value,
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       password: password.value,
     };
 
-    fetch("http://localhost:8080/sucsess", {
+    fetch("/sucsess", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -87,10 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
               
               >Now you can logIn here</h2>
         `
-        setTimeout(()=>{
+        setTimeout(() => {
           form.innerHTML = `
           `
-        },5000)
+        }, 5000)
       });
   });
 });
