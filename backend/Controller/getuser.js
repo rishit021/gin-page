@@ -1,11 +1,9 @@
-<<<<<<< HEAD
-exports.getuser = (req, res) => {
-=======
+const { user } = require("../models/user");
 
+exports.getuser =(req, res) => {
+  res.json();
+  const newuser = new user(req.body);
+  newuser.save();
 
-exports.getuser = async (res, req) => {
->>>>>>> origin
-  res.json(req.body);
-  console.log(req.body);
   res.end();
 }

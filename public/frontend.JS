@@ -50,10 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     user = {
-      name: name.value,
-      mail: mail.value,
-      number: number.value,
-      username: username.value,
+      fullName: name.value,
+      Email : mail.value,
+      Number : number.value,
+      userName : username.value,
       password: password.value,
     };
 
