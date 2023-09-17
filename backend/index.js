@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+require('dotenv').config()
 //connecting to database
 const connectDB = require('./database');
 const router = require('./routs/user');
@@ -15,7 +16,7 @@ app.use('/', router)
 connectDB();
 
 app.listen(PORT, () => {
-  console.log("server started on " + process.env.PORT || PORT);
+  console.log("server started on " + PORT);
 });
 
 module.exports.app = app
