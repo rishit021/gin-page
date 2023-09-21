@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form = document.getElementById("form"),
     loginform = document.getElementById("loginform"),
     mainform = document.getElementById("mainform"),
-    register = document.getElementById("register")
+    register = document.getElementById("register");
 
   let name, mail, number, username, password, repassword, hide;
 
@@ -14,7 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
   username = document.getElementById("setusername");
   password = document.getElementById("setpassword");
   repassword = document.getElementById("repassword");
-  hide = document.getElementById('hide');
+  hide = document.getElementById("hide");
+
+  let err = document.getElementById('err');
+
 
 
   // login tutton
@@ -35,12 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
     login.style.display = "flex";
   });
 
+  let passworderr = document.getElementById('passworderr');
+
   const submit = document.getElementById("submit");
 
   repassword.addEventListener("change", () => {
     if (password.value === repassword.value) {
       submit.toggleAttribute("disabled");
-      submit.style.opacity = '1';
+      submit.style.opacity = "1";
+    }else{
+      passworderr.style.display = "block";
+      passworderr.textContent = "password dosn't match";
     }
   });
 
@@ -48,16 +56,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   submit.addEventListener("click", (e) => {
     e.preventDefault();
+    err.style.display = "none";
 
     user = {
       fullName: name.value,
-      Email : mail.value,
-      Number : number.value,
-      userName : username.value,
+      Email: mail.value,
+      Number: number.value,
+      userName: username.value,
       password: password.value,
     };
 
-    fetch("/sucsess", {
+    fetch("/Register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -65,17 +74,42 @@ document.addEventListener("DOMContentLoaded", () => {
       body: JSON.stringify(user),
     })
       .then((res) => {
-        return res.json();
+          return res.json();
       })
       .then((res) => {
+        if(res.success!=true){
+          let newmsg = res.massage.message;
+          if(newmsg == undefined){
+            err.style.display = "none";
+          }
+          else{
+          let modmsg = newmsg.split("user validation failed: ")
+          err.style.display = "block";
+          err.textContent = "Note : " + modmsg;
+          }
+          if(res.massage.keyValue.Email == user.Email){
+            err.style.display = "block";
+            err.textContent = 'email already exist'
+          }
+          else if(res.massage.keyValue.Number == user.Number){
+            err.style.display = "block";
+            err.textContent = 'number already exist'
+          }
+          else if(res.massage.keyValue.userName == user.userName){
+            err.style.display = "block";
+            err.textContent = 'username already exist'
+          }
+        }
+      else{
+        console.log(res);
         form.innerHTML = `
           <div class="setfont" ><h2>Your Accout are Created</h2></div>
             <div class="display" >
               <div class="setfont" >
-                <div> Full Name : ${res.name}</div>
-                <div> E-mail : ${res.mail}</div>
-                <div> number : ${res.number}</div>
-                <div> username : ${res.username}</div>
+                <div> Full Name : ${res.user.fullName}</div>
+                <div> E-mail : ${res.user.Email}</div>
+                <div> number : ${res.user.Number}</div>
+                <div> username : ${res.user.userName}</div>
               </div>
             </div>
               <h2 
@@ -91,6 +125,28 @@ document.addEventListener("DOMContentLoaded", () => {
           form.innerHTML = `
           `
         }, 5000)
-      });
+        }})
+      })
+
+    let loginuser = document.getElementById('username'),
+        loginpassword = document.getElementById('password'),
+        signin = document.getElementById('signin'),
+        logininfo;
+
+
+        signin.addEventListener("click",()=>{
+
+          logininfo = {
+            userormail : loginuser.value,
+            password : loginpassword.value
+          };
+          fetch("/Login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json;charset=utf-8",
+            },
+            body: JSON.stringify(logininfo),
+          })
+        });
+
   });
-});

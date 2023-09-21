@@ -1,9 +1,20 @@
 const { user } = require("../models/user");
 
-exports.getuser =(req, res) => {
-  res.json();
-  const newuser = new user(req.body);
-  newuser.save();
+exports.getuser = async (req, res) => {
+  let newuser = new user(req.body);
 
+ await newuser.save()
+  .then((user)=>{
+    res.status(200).json({
+      'success' : true,
+      user
+    });
+  })
+  .catch((Error)=>{
+    res.status(403).json({
+      "success" : false,
+      "massage" : Error
+  })
+  })
   res.end();
 }

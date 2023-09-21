@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="form">
-        <form action="sucsess.html">
+        <form>
             <h1>StarTech</h1>
             <div id="form">
                 <div class="input" id="mainform" >
@@ -26,12 +26,15 @@
                     <label for="setpassword">Set password</label>
                     <input type="password" id="setpassword" name="setpassword"><br><br>
                     <label for="repassword">Re enter password</label>
-                    <input type="password" id="repassword" name="repassword"><br><br>
+                    <input type="password" id="repassword" name="repassword">
+                    <div id="passworderr" class="errstyle" ></div>
+                    <div id="err" class="errstyle" ></div>
+            <br><br>
                     <input disabled="true" type="submit" value="Register" id="submit" class="style">
                 </div>
             </div>
             <div  id="login" class="formstyle">
-                <div class="switchbtn" >Log in</div>
+                <div class="switchbtn" >Already User</div>
             </div>
           </form>
           <div id="loginform" class="input"  style="display: none;">
@@ -39,7 +42,7 @@
             <input type="text" id="username" name="username"><br><br>
             <label for="password">password</label>
             <input type="password" id="password" name="password"><br><br>
-            <input type="submit" value="Log In" class="style">
+            <input type="submit"  id="signin" value="Log In" class="style">
             <div id="register" class="formstyle">
                 if you are mot registerd click on Register
                 <div class="switchbtn" >Register</div>
