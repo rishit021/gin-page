@@ -131,22 +131,38 @@ document.addEventListener("DOMContentLoaded", () => {
     let loginuser = document.getElementById('username'),
         loginpassword = document.getElementById('password'),
         signin = document.getElementById('signin'),
-        logininfo;
+        logininfo,
+        loginerr = document.getElementById('loginerr');
+
+        loginpassword.addEventListener("change", ()=>{
+          signin.style.opacity = "1";
+          signin.toggleAttribute("dissabled");
+
+        })
 
 
-        signin.addEventListener("click",()=>{
+        signin.addEventListener("click",(e)=>{
+
+          loginerr.style.display = "none";
 
           logininfo = {
             userormail : loginuser.value,
             password : loginpassword.value
           };
-          fetch("/Login", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json;charset=utf-8",
-            },
-            body: JSON.stringify(logininfo),
-          })
+
+          if (loginuser.value == '' || loginpassword.value == '') {
+            loginerr.style.display = "block";
+            loginerr.textContent = "empty field is not acceptable";
+          }
+          else{
+            fetch("/Login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json;charset=utf-8",
+              },
+              body: JSON.stringify(logininfo),
+            })
+          }
         });
 
   });

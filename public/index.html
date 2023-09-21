@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="form">
-        <form>
+        <form action="/signed" >
             <h1>StarTech</h1>
             <div id="form">
                 <div class="input" id="mainform" >
@@ -38,10 +38,10 @@
             </div>
           </form>
           <div id="loginform" class="input"  style="display: none;">
-            <label for="username">username</label>
-            <input type="text" id="username" name="username"><br><br>
-            <label for="password">password</label>
-            <input type="password" id="password" name="password"><br><br>
+            <input placeholder="username OR mail" type="text" id="username" name="username"><br><br>
+            <input placeholder="password" type="password" id="password" name="password">
+            <div id="loginerr" class="errstyle" ></div>
+            <br><br>
             <input type="submit"  id="signin" value="Log In" class="style">
             <div id="register" class="formstyle">
                 if you are mot registerd click on Register
